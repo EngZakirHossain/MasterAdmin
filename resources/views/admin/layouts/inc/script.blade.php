@@ -8,7 +8,6 @@
 {{-- <script src="{{ asset('admin') }}/assets/vendor/libs/hammer/hammer.js"></script> --}}
 {{-- <script src="{{ asset('admin') }}/assets/vendor/libs/i18n/i18n.js"></script> --}}
 {{-- <script src="{{ asset('admin') }}/assets/vendor/libs/typeahead-js/typeahead.js"></script> --}}
-
 <script src="{{ asset('admin') }}/assets/vendor/js/menu.js"></script>
 <!-- endbuild -->
 
@@ -22,13 +21,17 @@
 <script src="{{ asset('admin') }}/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js"></script>
 <script src="{{ asset('admin') }}/assets/vendor/libs/datatables-buttons/buttons.html5.js"></script>
 <script src="{{ asset('admin') }}/assets/vendor/libs/datatables-buttons/buttons.print.js"></script> --}}
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
+
+<script src="{{ asset('admin') }}/assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
+<script src="{{ asset('admin') }}/assets/js/extended-ui-sweetalert2.js"></script>
 
 <!-- Main JS -->
 <script src="{{ asset('admin') }}/assets/js/main.js"></script>
 
 <!-- Page JS -->
 <script src="{{ asset('admin') }}/assets/js/dashboards-ecommerce.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-    {!! Toastr::message() !!}
 
-@yield('admin_scipt')
+
+@stack('admin_scipt')

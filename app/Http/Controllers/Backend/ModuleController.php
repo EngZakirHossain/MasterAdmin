@@ -45,7 +45,7 @@ class ModuleController extends Controller
             'module_slug' =>Str::slug($request->module_name),
         ]);
 
-        Toastr::success('Data Created Successfully', 'Success', ["positionClass" => "toast-bottom-left"]);
+        Toastr::success('Module Created Successfully', 'Success',);
         return redirect()->route('admin.module.index');
 
     }
@@ -67,9 +67,11 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($module_slug)
     {
-        dd($id);
+        $module = Module::whereModule_slug($module_slug)->select('module_name','module_slug')->first();
+        return view('admin.pages.module.edit',compact('module'));
+
     }
 
     /**
@@ -79,9 +81,17 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModuleStoreRequest $request, $module_slug)
     {
-        //
+        $module = Module::whereModule_slug($module_slug)->first();
+
+        $module->update([
+            'module_name' =>$request->module_name,
+            'module_slug' =>Str::slug($request->module_name),
+        ]);
+
+        Toastr::success('Module Updated Successfully', 'Success',);
+        return redirect()->route('admin.module.index');
     }
 
     /**
@@ -90,8 +100,11 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($module_slug)
     {
-        //
+         $module = Module::whereModule_slug($module_slug);
+         $module->delete();
+         Toastr::success('Module Delete Successfully', 'Success',);
+         return redirect()->route('admin.module.index');
     }
 }

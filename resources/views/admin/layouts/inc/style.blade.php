@@ -31,10 +31,13 @@
 {{-- <link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" /> --}}
 
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+<link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/sweetalert2/sweetalert2.css" />
+
+
 <!-- Page CSS -->
 
 <!-- Helpers -->
 <script src="{{ asset('admin/assets') }}/vendor/js/helpers.js"></script>
 
 <script src="{{ asset('admin/assets') }}/js/config.js"></script>
-@yield('admin_style')
+@stack('admin_style')

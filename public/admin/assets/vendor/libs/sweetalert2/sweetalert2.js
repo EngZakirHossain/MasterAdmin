@@ -16,7 +16,7 @@
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Swal\": function() { return /* binding */ Swal; }\n/* harmony export */ });\n/* harmony import */ var sweetalert2_dist_sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2 */ \"./node_modules/sweetalert2/dist/sweetalert2.js\");\n/* harmony import */ var sweetalert2_dist_sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2__WEBPACK_IMPORTED_MODULE_0__);\n\nvar Swal = sweetalert2_dist_sweetalert2__WEBPACK_IMPORTED_MODULE_0__.mixin({\n  buttonsStyling: false,\n  customClass: {\n    confirmButton: 'btn btn-primary',\n    cancelButton: 'btn btn-label-danger',\n    denyButton: 'btn btn-label-secondary'\n  }\n});\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9saWJzL3N3ZWV0YWxlcnQyL3N3ZWV0YWxlcnQyLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7OztBQUEyRDtBQUUzRCxJQUFNQyxJQUFJLEdBQUdELCtEQUFnQixDQUFDO0VBQzVCRyxjQUFjLEVBQUUsS0FBSztFQUNyQkMsV0FBVyxFQUFFO0lBQ1hDLGFBQWEsRUFBRSxpQkFBaUI7SUFDaENDLFlBQVksRUFBRSxzQkFBc0I7SUFDcENDLFVBQVUsRUFBRTtFQUNkO0FBQ0YsQ0FBQyxDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vVnVleHkvLi9saWJzL3N3ZWV0YWxlcnQyL3N3ZWV0YWxlcnQyLmpzPzE3MWMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgU3dhbFBsdWdpbiBmcm9tICdzd2VldGFsZXJ0Mi9kaXN0L3N3ZWV0YWxlcnQyJztcclxuXHJcbmNvbnN0IFN3YWwgPSBTd2FsUGx1Z2luLm1peGluKHtcclxuICBidXR0b25zU3R5bGluZzogZmFsc2UsXHJcbiAgY3VzdG9tQ2xhc3M6IHtcclxuICAgIGNvbmZpcm1CdXR0b246ICdidG4gYnRuLXByaW1hcnknLFxyXG4gICAgY2FuY2VsQnV0dG9uOiAnYnRuIGJ0bi1sYWJlbC1kYW5nZXInLFxyXG4gICAgZGVueUJ1dHRvbjogJ2J0biBidG4tbGFiZWwtc2Vjb25kYXJ5J1xyXG4gIH1cclxufSk7XHJcblxyXG5leHBvcnQgeyBTd2FsIH07XHJcbiJdLCJuYW1lcyI6WyJTd2FsUGx1Z2luIiwiU3dhbCIsIm1peGluIiwiYnV0dG9uc1N0eWxpbmciLCJjdXN0b21DbGFzcyIsImNvbmZpcm1CdXR0b24iLCJjYW5jZWxCdXR0b24iLCJkZW55QnV0dG9uIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./libs/sweetalert2/sweetalert2.js\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Swal\": function() { return /* binding */ Swal; }\n/* harmony export */ });\n/* harmony import */ var sweetalert2_dist_sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2 */ \"./node_modules/sweetalert2/dist/sweetalert2.js\");\n/* harmony import */ var sweetalert2_dist_sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2__WEBPACK_IMPORTED_MODULE_0__);\n\nvar Swal = sweetalert2_dist_sweetalert2__WEBPACK_IMPORTED_MODULE_0__.mixin({\n  buttonsStyling: false,\n  customClass: {\n    confirmButton: 'btn btn-primary',\n    cancelButton: 'btn btn-label-danger',\n }\n});\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9saWJzL3N3ZWV0YWxlcnQyL3N3ZWV0YWxlcnQyLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7OztBQUEyRDtBQUUzRCxJQUFNQyxJQUFJLEdBQUdELCtEQUFnQixDQUFDO0VBQzVCRyxjQUFjLEVBQUUsS0FBSztFQUNyQkMsV0FBVyxFQUFFO0lBQ1hDLGFBQWEsRUFBRSxpQkFBaUI7SUFDaENDLFlBQVksRUFBRSxzQkFBc0I7SUFDcENDLFVBQVUsRUFBRTtFQUNkO0FBQ0YsQ0FBQyxDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vVnVleHkvLi9saWJzL3N3ZWV0YWxlcnQyL3N3ZWV0YWxlcnQyLmpzPzE3MWMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgU3dhbFBsdWdpbiBmcm9tICdzd2VldGFsZXJ0Mi9kaXN0L3N3ZWV0YWxlcnQyJztcclxuXHJcbmNvbnN0IFN3YWwgPSBTd2FsUGx1Z2luLm1peGluKHtcclxuICBidXR0b25zU3R5bGluZzogZmFsc2UsXHJcbiAgY3VzdG9tQ2xhc3M6IHtcclxuICAgIGNvbmZpcm1CdXR0b246ICdidG4gYnRuLXByaW1hcnknLFxyXG4gICAgY2FuY2VsQnV0dG9uOiAnYnRuIGJ0bi1sYWJlbC1kYW5nZXInLFxyXG4gICAgZGVueUJ1dHRvbjogJ2J0biBidG4tbGFiZWwtc2Vjb25kYXJ5J1xyXG4gIH1cclxufSk7XHJcblxyXG5leHBvcnQgeyBTd2FsIH07XHJcbiJdLCJuYW1lcyI6WyJTd2FsUGx1Z2luIiwiU3dhbCIsIm1peGluIiwiYnV0dG9uc1N0eWxpbmciLCJjdXN0b21DbGFzcyIsImNvbmZpcm1CdXR0b24iLCJjYW5jZWxCdXR0b24iLCJkZW55QnV0dG9uIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./libs/sweetalert2/sweetalert2.js\n");
 
 /***/ }),
 
@@ -34,7 +34,7 @@ eval("/*!\n* sweetalert2 v11.4.38\n* Released under the MIT License.\n*/\n(funct
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -48,14 +48,14 @@ eval("/*!\n* sweetalert2 v11.4.38\n* Released under the MIT License.\n*/\n(funct
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	!function() {
@@ -68,7 +68,7 @@ eval("/*!\n* sweetalert2 v11.4.38\n* Released under the MIT License.\n*/\n(funct
 /******/ 			return getter;
 /******/ 		};
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
@@ -80,12 +80,12 @@ eval("/*!\n* sweetalert2 v11.4.38\n* Released under the MIT License.\n*/\n(funct
 /******/ 			}
 /******/ 		};
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	!function() {
 /******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	!function() {
 /******/ 		// define __esModule on exports
@@ -96,9 +96,9 @@ eval("/*!\n* sweetalert2 v11.4.38\n* Released under the MIT License.\n*/\n(funct
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	}();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
@@ -106,6 +106,6 @@ eval("/*!\n* sweetalert2 v11.4.38\n* Released under the MIT License.\n*/\n(funct
 /******/ 	var __webpack_export_target__ = window;
 /******/ 	for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];
 /******/ 	if(__webpack_exports__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
-/******/ 	
+/******/
 /******/ })()
 ;

@@ -55,10 +55,17 @@
                                                     href="{{ route('admin.module.edit', $module->module_slug) }}">
                                                     <i class="ti ti-pencil me-1"></i>
                                                     Edit</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('admin.module.destroy', $module->module_slug) }}"><i
-                                                        class="ti ti-trash me-1"></i>
-                                                    Delete</a>
+                                                <form action="{{ route('admin.module.destroy', $module->module_slug) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item show_confirm"
+                                                        id="confirm-color">
+                                                        <i class="ti ti-trash me-1"></i>
+                                                        Delete
+                                                    </button>
+                                                </form>
+
                                             </div>
                                         </div>
                                     </td>
@@ -77,7 +84,33 @@
         </div>
     </div>
 
-
 @endsection
 @push('admin_scipt')
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            let form = $(this).closest("form");
+            event.preventDefault();
+            Swal.fire({
+                    title: `Are you sure ?`,
+                    text: "You won't able to revert this !",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel it!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire(
+                            'Deleted',
+                            'your File Has Been Deleted',
+                            'success'
+                        )
+                    }
+                });
+        });
+    </script>
 @endpush
