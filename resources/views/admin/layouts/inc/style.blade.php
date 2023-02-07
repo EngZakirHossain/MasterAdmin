@@ -30,6 +30,7 @@
     href="{{ asset('admin/assets') }}/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" /> --}}
 {{-- <link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" /> --}}
 
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 <!-- Page CSS -->
 
 <!-- Helpers -->

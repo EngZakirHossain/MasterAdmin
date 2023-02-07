@@ -2,7 +2,7 @@
 
    <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
        <div class="app-brand demo">
-           <a href="{{ route('home') }}" class="app-brand-link">
+           <a href="{{ route('admin.home') }}" class="app-brand-link">
                <span class="app-brand-logo demo">
                    <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                        <path fill-rule="evenodd" clip-rule="evenodd"
@@ -87,24 +87,7 @@
                    </li>
                </ul>
            </li>
-           <li class="menu-item">
-               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                   <i class="menu-icon tf-icons ti ti-settings"></i>
-                   <div data-i18n="Roles & Permissions">Roles & Permissions</div>
-               </a>
-               <ul class="menu-sub">
-                   <li class="menu-item">
-                       <a href="app-access-roles.html" class="menu-link">
-                           <div data-i18n="Roles">Roles</div>
-                       </a>
-                   </li>
-                   <li class="menu-item">
-                       <a href="app-access-permission.html" class="menu-link">
-                           <div data-i18n="Permission">Permission</div>
-                       </a>
-                   </li>
-               </ul>
-           </li>
+
            <li class="menu-item">
                <a href="javascript:void(0);" class="menu-link menu-toggle">
                    <i class="menu-icon tf-icons ti ti-file"></i>
@@ -369,13 +352,46 @@
                    </li>
                </ul>
            </li>
-           <li class="menu-item">
-               <a href="modal-examples.html" class="menu-link">
-                   <i class="menu-icon tf-icons ti ti-square"></i>
-                   <div data-i18n="Modal Examples">Modal Examples</div>
-               </a>
+           <!-- Apps & Pages -->
+           <li class="menu-header small text-uppercase">
+               <span class="menu-header-text">System Setting</span>
            </li>
-
+           <li class="menu-item">
+               <a href="javascript:void(0);" class="menu-link menu-toggle">
+                   <i class="menu-icon tf-icons ti ti-settings"></i>
+                   <div data-i18n="Wizard Examples">Module Setting</div>
+               </a>
+               <ul class="menu-sub">
+                   <li class="menu-item">
+                       <a href="{{ route('admin.module.index') }}" class="menu-link">
+                           <div data-i18n="Checkout">Module List</div>
+                       </a>
+                   </li>
+                   <li class="menu-item">
+                       <a href="wizard-ex-property-listing.html" class="menu-link">
+                           <div data-i18n="Property Listing">Create</div>
+                       </a>
+                   </li>
+               </ul>
+           </li>
+           <li class="menu-item">
+               <a href="javascript:void(0);" class="menu-link menu-toggle">
+                   <i class="menu-icon tf-icons ti ti-settings"></i>
+                   <div data-i18n="Roles & Permissions">Roles & Permissions</div>
+               </a>
+               <ul class="menu-sub">
+                   <li class="menu-item">
+                       <a href="app-access-roles.html" class="menu-link">
+                           <div data-i18n="Roles">Roles</div>
+                       </a>
+                   </li>
+                   <li class="menu-item">
+                       <a href="app-access-permission.html" class="menu-link">
+                           <div data-i18n="Permission">Permission</div>
+                       </a>
+                   </li>
+               </ul>
+           </li>
        </ul>
    </aside>
    <!-- / Menu -->
