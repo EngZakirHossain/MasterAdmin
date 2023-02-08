@@ -368,7 +368,7 @@
                        </a>
                    </li>
                    <li class="menu-item">
-                       <a href="wizard-ex-property-listing.html" class="menu-link">
+                       <a href="{{ route('admin.module.create') }}" class="menu-link">
                            <div data-i18n="Property Listing">Create</div>
                        </a>
                    </li>
@@ -381,7 +381,7 @@
                </a>
                <ul class="menu-sub">
                    <li class="menu-item">
-                       <a href="app-access-roles.html" class="menu-link">
+                       <a href="{{ route('admin.role.index') }}" class="menu-link">
                            <div data-i18n="Roles">Roles</div>
                        </a>
                    </li>
