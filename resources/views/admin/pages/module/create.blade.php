@@ -1,7 +1,6 @@
 @extends('admin.layouts.master')
 @section('page_title', 'Module Create')
 @push('admin_style')
-    
 @endpush
 @section('admin_content')
     <div class="row">
@@ -24,9 +23,15 @@
                                 <label class="form-label" for="module_name">Modul Name</label>
                                 <div class="input-group input-group-merge">
                                     <span id="module_name" class="input-group-text"><i class="ti ti-building"></i></span>
-                                    <input type="text" class="form-control" id="module_name" name="module_name"
-                                        placeholder="enter module name" aria-label="module name">
+                                    <input type="text" class="form-control @error('module_name') is-invalid  @enderror"
+                                        id="module_name" name="module_name" placeholder="enter module name"
+                                        aria-label="module name">
                                 </div>
+                                @error('module_name')
+                                    <span class="is-invalid text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                         </form>
@@ -38,5 +43,4 @@
 
 @endsection
 @push('admin_scipt')
-
 @endpush

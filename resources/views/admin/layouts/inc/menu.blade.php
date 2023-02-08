@@ -386,7 +386,7 @@
                        </a>
                    </li>
                    <li class="menu-item">
-                       <a href="app-access-permission.html" class="menu-link">
+                       <a href="{{ route('admin.permission.index') }}" class="menu-link">
                            <div data-i18n="Permission">Permission</div>
                        </a>
                    </li>

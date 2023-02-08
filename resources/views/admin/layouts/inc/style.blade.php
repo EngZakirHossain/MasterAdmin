@@ -24,13 +24,15 @@
 <link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 {{-- <link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/node-waves/node-waves.css" /> --}}
 {{-- <link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/typeahead-js/typeahead.css" /> --}}
-{{-- <link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/apex-charts/apex-charts.css" /> --}}
+<link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/apex-charts/apex-charts.css" />
+<link rel="stylesheet" href="{{ asset('admin') }}/assets/vendor/libs/select2/select2.css" />
 {{-- <link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/datatables-bs5/datatables.bootstrap5.css" /> --}}
-{{-- <link rel="stylesheet"
-    href="{{ asset('admin/assets') }}/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" /> --}}
+{{-- <link rel="stylesheet" --}}
+    {{-- href="{{ asset('admin/assets') }}/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" /> --}}
 {{-- <link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" /> --}}
 
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+<link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/toastr/toastr.css" />
 <link rel="stylesheet" href="{{ asset('admin/assets') }}/vendor/libs/sweetalert2/sweetalert2.css" />
 
 
