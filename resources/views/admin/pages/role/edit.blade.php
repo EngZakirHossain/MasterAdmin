@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('page_title', 'Role Create')
+@section('page_title', 'Role Edit')
 @push('admin_style')
 @endpush
 @section('admin_content')
@@ -8,26 +8,27 @@
             <div class="col-xl">
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Role Create Form</h5>
+                        <h5 class="mb-0">Role Edit Form</h5>
                         <small class="text-muted float-end">
                             <a class="btn btn-secondary" href="{{ route('admin.role.index') }}">
                                 <i class="ti ti-arrow-back-up"></i>
-                                Back to Role list
+                                Back
                             </a>
                         </small>
                     </div>
                     <div class="card-body">
                         <!-- Add role form -->
-                        <form action="{{ route('admin.role.store') }}" id="addRoleForm" class="row g-3" method="POST">
+                        <form action="{{ route('admin.role.update',$role->role_slug) }}" id="addRoleForm" class="row g-3" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="col-12 mb-4">
                                 <label class="form-label" for="role_name">Role Name</label>
-                                <input type="text" id="role_name" name="role_name" class="form-control"
+                                <input type="text" id="role_name" name="role_name" value="{{$role->role_name}}" class="form-control"
                                     placeholder="Enter a role name" tabindex="-1" />
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text">Role Note</span>
-                                <textarea class="form-control" name="role_note" aria-label="With textarea" placeholder="Comment"></textarea>
+                                <textarea class="form-control" name="role_note"aria-label="With textarea" placeholder="Comment">{{$role->role_note}}</textarea>
                             </div>
                             <div class="form-check form-switch mb-2">
                                 <input class="form-check-input" type="checkbox" id="select-all">
@@ -55,7 +56,13 @@
                                                                     <div class="form-check me-3 me-lg-5 me-sm-1">
                                                                         <input class="form-check-input" name="permissions[]"
                                                                             value="{{ $permission->id }}" type="checkbox"
-                                                                            id="permission_{{ $permission->id }}" />
+                                                                            id="permission_{{ $permission->id }}"
+                                                                            @if (isset($role))
+                                                                                @foreach ( $role->permissions as $rpermission)
+                                                                                {{$rpermission->id ==$permission->id ?'checked' :'' }}
+                                                                                @endforeach
+                                                                            @endif
+                                                                            />
                                                                         <label class="form-check-label"
                                                                             for="permission_{{ $permission->id }}">
                                                                             {{ $permission->permission_name }} </label>

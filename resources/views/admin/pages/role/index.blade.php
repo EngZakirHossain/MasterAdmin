@@ -115,12 +115,10 @@
                                                     </button>
 
                                                     <div class="dropdown-menu">
-                                                        <button class="dropdown-item" tabindex="0"
-                                                            aria-controls="DataTables_Table_0" type="button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#editroleModal{{ $role->role_slug }}"><i
-                                                                class="ti ti-pencil me-1"></i><span>Edit</span>
-                                                        </button>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('admin.role.edit', $role->role_slug) }}">
+                                                            <i class="ti ti-pencil me-1"></i> Edit
+                                                        </a>
                                                         <form action="{{ route('admin.role.destroy', $role->role_slug) }}"
                                                             method="POST">
                                                             @csrf

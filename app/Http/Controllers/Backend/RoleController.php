@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Role;
 use App\Models\Module;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use App\Http\Requests\RoleStoreRequest;
 
 class RoleController extends Controller
 {
@@ -42,9 +45,15 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleStoreRequest $request)
     {
-        dd($request->all());
+        Role::updateOrCreate([
+            'role_name'=>$request->role_name,
+            'role_slug'=>Str::slug($request->role_name),
+            'role_note'=>$request->role_note,
+        ])->permissions()->sync($request->input('permissions',[]));
+        Toastr::success('Role Created Successfully', 'Success',);
+        return redirect()->route('admin.role.index');
     }
 
     /**
@@ -53,9 +62,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($role_slug)
     {
-        //
+
     }
 
     /**
@@ -64,9 +73,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($role_slug)
     {
-        //
+        $role = Role::with(['permissions'])->whereRole_slug($role_slug)->first();
+        $modules = Module::with(['permissions:id,module_id,permission_slug,permission_name'])
+            ->select('module_name','id')
+            ->get();
+        return view('admin.pages.role.edit',compact('role','modules'));
     }
 
     /**
@@ -76,9 +89,18 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $role_slug)
     {
-        //
+        $role = Role::whereRole_slug($role_slug)->first();
+        $role->update([
+            'role_name'=>$request->role_name,
+            'role_slug'=>Str::slug($request->role_name),
+            'role_note'=>$request->role_note,
+        ]);
+        $role->permissions()->sync($request->input('permissions',[]));
+        Toastr::success('Role Updated Successfully', 'Success',);
+        return redirect()->route('admin.role.index');
+
     }
 
     /**
@@ -87,8 +109,15 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($role_slug)
     {
-        //
+        $role = Role::whereRole_slug($role_slug)->first();
+        if($role->is_deleteable){
+            $role->delete();
+            Toastr::success('Role Deleted Successfully', 'Success',);
+            return redirect()->route('admin.role.index');
+        }
+        Toastr::error('Role not Deleteable', 'error',);
+        return redirect()->route('admin.role.index');
     }
 }
