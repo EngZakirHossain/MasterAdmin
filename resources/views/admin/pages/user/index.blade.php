@@ -8,17 +8,17 @@
         <div class="col">
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="row g-4 mb-4">
-                    <div class="col-sm-6 col-xl-3">
+                    <div class="col-sm-6 col-xl-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex align-items-start justify-content-between">
                                     <div class="content-left">
-                                        <span>Session</span>
+                                        <span>Total Register User</span>
                                         <div class="d-flex align-items-center my-1">
-                                            <h4 class="mb-0 me-2">21,459</h4>
-                                            <span class="text-success">(+29%)</span>
+                                            <h4 class="mb-0 me-2">{{ $users->count() }}</h4>
+                                            <span class="text-success">(+{{$users->where('created_at', '>=', Carbon\Carbon::now()->subdays(30))->count()}} )</span>
                                         </div>
-                                        <span>Total Users</span>
+                                        <span> Last Month analytics</span>
                                     </div>
                                     <span class="badge bg-label-primary rounded p-2">
                                         <i class="ti ti-user ti-sm"></i>
@@ -27,36 +27,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start justify-content-between">
-                                    <div class="content-left">
-                                        <span>Paid Users</span>
-                                        <div class="d-flex align-items-center my-1">
-                                            <h4 class="mb-0 me-2">4,567</h4>
-                                            <span class="text-success">(+18%)</span>
-                                        </div>
-                                        <span>Last week analytics </span>
-                                    </div>
-                                    <span class="badge bg-label-danger rounded p-2">
-                                        <i class="ti ti-user-plus ti-sm"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
+                    <div class="col-sm-6 col-xl-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex align-items-start justify-content-between">
                                     <div class="content-left">
                                         <span>Active Users</span>
                                         <div class="d-flex align-items-center my-1">
-                                            <h4 class="mb-0 me-2">19,860</h4>
-                                            <span class="text-danger">(-14%)</span>
+                                            <h4 class="mb-0 me-2">{{ $users->where('is_active', 1)->count() }}</h4>
+                                            <span class="text-success">({{ round(($users->where('is_active', 1)->count() / $users->count()) * 100)}}%)</span>
                                         </div>
-                                        <span>Last week analytics</span>
+                                        <span>Active data analytics</span>
                                     </div>
                                     <span class="badge bg-label-success rounded p-2">
                                         <i class="ti ti-user-check ti-sm"></i>
@@ -65,20 +46,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
+                    <div class="col-sm-6 col-xl-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex align-items-start justify-content-between">
                                     <div class="content-left">
-                                        <span>Pending Users</span>
+                                        <span>In-Active Users</span>
                                         <div class="d-flex align-items-center my-1">
-                                            <h4 class="mb-0 me-2">237</h4>
-                                            <span class="text-success">(+42%)</span>
+                                            <h4 class="mb-0 me-2">{{ $users->where('is_active', 0)->count() }}</h4>
+                                            <span class="text-success">({{ round(($users->where('is_active', 0)->count() / $users->count()) * 100)}}%)</span>
                                         </div>
-                                        <span>Last week analytics</span>
+                                        <span>In-active data analytics</span>
                                     </div>
-                                    <span class="badge bg-label-warning rounded p-2">
-                                        <i class="ti ti-user-exclamation ti-sm"></i>
+                                    <span class="badge bg-label-danger rounded p-2">
+                                        <i class="ti ti-user-plus ti-sm"></i>
                                     </span>
                                 </div>
                             </div>
@@ -123,15 +104,11 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            {{-- <div class="form-check form-switch mb-2">
+                                            <div class="form-check form-switch mb-2">
                                                 <input class="form-check-input toggle-class" type="checkbox"
                                                     data-id="{{ $user->id }}" id="user_{{ $user->id }}"
                                                     {{ $user->is_active ? 'checked' : '' }}>
-                                            </div> --}}
-                                            <input data-id="{{ $user->id }}" class="toggle-class" type="checkbox"
-                                                data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
-                                                data-on="Active" data-off="InActive"
-                                                {{ $user->is_active ? 'checked' : '' }}>
+                                            </div>
                                         </td>
                                         <td>
                                             <div class="dropdown">
@@ -334,6 +311,10 @@
                     }
                 });
         });
+
+    </script>
+
+    <script>
         //status change
         $(function() {
             $('.toggle-class').change(function() {
@@ -347,13 +328,21 @@
                         'is_active': is_active,
                         'user_id': item_id
                     },
-                    success: function(data) {
-                        console.log(data.success);
-                    }
-                });
-            })
+                    success: function(data){
+                console.log(data);
+                Swal.fire({
+                    title: `${ data.message}`,
+                    text: `${ data.message }`,
+                    icon: `${data.type}`,
+                })
+            },
+            errro: function(err){
+                if(err){
+                    console.log(err);
+                }
+            }
         });
+        });
+    });
     </script>
-
-    <script></script>
 @endpush

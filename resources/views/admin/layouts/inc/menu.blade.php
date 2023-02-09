@@ -30,7 +30,7 @@
 
        <ul class="menu-inner py-1">
            <!-- Dashboards -->
-           <li class="menu-item active open">
+           <li class="menu-item @if (request()->routeIs('admin.home')) active open @endif">
                <a href="{{ route('admin.home') }}" class="menu-link">
                    <i class="menu-icon tf-icons ti ti-smart-home"></i>
                    <div data-i18n="Dashboards">Dashboards</div>
@@ -44,13 +44,13 @@
            </li>
            {{-- user menu --}}
            @can('index-user')
-               <li class="menu-item">
+               <li class="menu-item @if (request()->routeIs('admin.users.index')) active open @endif">
                    <a href="javascript:void(0);" class="menu-link menu-toggle">
                        <i class="menu-icon tf-icons ti ti-users"></i>
                        <div data-i18n="Users">Users</div>
                    </a>
                    <ul class="menu-sub">
-                       <li class="menu-item">
+                       <li class="menu-item @if (request()->routeIs('admin.users.index')) active @endif">
                            <a href="{{ route('admin.users.index') }}" class="menu-link">
                                <div data-i18n="List">List</div>
                            </a>
@@ -96,13 +96,13 @@
            </li>
            {{-- Module menu --}}
            @can('index-module')
-               <li class="menu-item">
+               <li class="menu-item @if (request()->routeIs('admin.module.index')) active open @endif">
                    <a href="javascript:void(0);" class="menu-link menu-toggle">
                        <i class="menu-icon tf-icons ti ti-shield-lock"></i>
                        <div data-i18n="Wizard Examples">Module Setting</div>
                    </a>
                    <ul class="menu-sub">
-                       <li class="menu-item">
+                       <li class="menu-item @if (request()->routeIs('admin.module.index')) active @endif">
                            <a href="{{ route('admin.module.index') }}" class="menu-link">
                                <div data-i18n="Checkout">Module List</div>
                            </a>
@@ -112,13 +112,13 @@
            @endcan
            {{-- permission menu --}}
            @can('index-permission')
-               <li class="menu-item">
+               <li class="menu-item @if (request()->routeIs('admin.permission.index')) active open @endif">
                    <a href="javascript:void(0);" class="menu-link menu-toggle">
                        <i class="menu-icon tf-icons ti ti-fingerprint"></i>
                        <div data-i18n="Roles & Permissions">Permissions</div>
                    </a>
                    <ul class="menu-sub">
-                       <li class="menu-item">
+                       <li class="menu-item @if (request()->routeIs('admin.permission.index')) active @endif">
                            <a href="{{ route('admin.permission.index') }}" class="menu-link">
                                <div data-i18n="Permission">Permission</div>
                            </a>
@@ -128,13 +128,13 @@
            @endcan
            {{-- role menu --}}
            @can('index-role')
-               <li class="menu-item">
+               <li class="menu-item @if (request()->routeIs('admin.role.index')) active open @endif">
                    <a href="javascript:void(0);" class="menu-link menu-toggle">
                        <i class="menu-icon tf-icons ti ti-lock-access"></i>
                        <div data-i18n="Roles & Permissions">Roles</div>
                    </a>
-                   <ul class="menu-sub">
-                       <li class="menu-item">
+                   <ul class="menu-sub ">
+                       <li class="menu-item @if (request()->routeIs('admin.role.index')) active @endif">
                            <a href="{{ route('admin.role.index') }}" class="menu-link">
                                <div data-i18n="Roles">Roles</div>
                            </a>

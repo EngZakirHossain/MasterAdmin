@@ -25,7 +25,7 @@ class UserController extends Controller
         Gate::authorize('index-user');
         //authorize this user to access or not
         $users = User::with(['role:id,role_name,role_slug'])
-        ->select('id','role_id','name','email','updated_at','password','is_active')
+        ->select('id','role_id','name','email','updated_at','password','is_active','created_at')
         ->latest('id')
         ->paginate(10);
         $roles = Role::select('id','role_name',)->get();
