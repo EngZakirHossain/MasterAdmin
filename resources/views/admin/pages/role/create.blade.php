@@ -22,8 +22,14 @@
                             @csrf
                             <div class="col-12 mb-4">
                                 <label class="form-label" for="role_name">Role Name</label>
-                                <input type="text" id="role_name" name="role_name" class="form-control"
-                                    placeholder="Enter a role name" tabindex="-1" />
+                                <input type="text" name="role_name"
+                                    class="form-control @error('role_name') is-invalid  @enderror"
+                                    placeholder="Enter a role name" />
+                                @error('role_name')
+                                    <span class="is-invalid text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text">Role Note</span>
@@ -34,7 +40,12 @@
                                 <label class="form-check-label" for="select-all">Select All</label>
                             </div>
                             <div class="col-12">
-                                <h5>Assign Permission for Role</h5>
+                                <h5 class="@error('permissions') is-invalid  @enderror">Assign Permission for Role</h5>
+                                @error('permissions')
+                                    <span class="is-invalid text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <!-- Permission table -->
                                 <div class="table-responsive">
                                     <table class="table table-flush-spacing">
@@ -74,7 +85,7 @@
                             </div>
                             <div class="col-12 text-center mt-4">
                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-                                <a href="{{route('admin.role.index')}}" type="button" class="btn btn-label-secondary" >
+                                <a href="{{ route('admin.role.index') }}" type="button" class="btn btn-label-secondary">
                                     Cancel
                                 </a>
                             </div>

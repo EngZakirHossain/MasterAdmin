@@ -13,7 +13,7 @@ class RoleUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class RoleUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+           'role_name' => 'required|string',
+           'role_name' => 'nullable|string|max:255',
+           'permissions' => 'required|array',
+           'permissions.*' => 'integer',
         ];
     }
 }

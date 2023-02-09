@@ -8,7 +8,9 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\RoleStoreRequest;
+use App\Http\Requests\RoleUpdateRequest;
 
 class RoleController extends Controller
 {
@@ -19,6 +21,8 @@ class RoleController extends Controller
      */
     public function index()
     {
+        Gate::authorize('index-role');
+        //authorize this user to access or not
         $roles = Role::with(['permissions:id,permission_name,permission_slug'])
         ->select(['id','role_name','role_slug','is_deleteable','updated_at'])
         ->paginate(10);
@@ -32,7 +36,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-            $modules = Module::with(['permissions:id,module_id,permission_slug,permission_name'])
+        Gate::authorize('create-role');
+        //authorize this user to access or not
+        $modules = Module::with(['permissions:id,module_id,permission_slug,permission_name'])
             ->select('module_name','id')
             ->get();
             return view('admin.pages.role.create',compact('modules'));
@@ -47,6 +53,8 @@ class RoleController extends Controller
      */
     public function store(RoleStoreRequest $request)
     {
+        Gate::authorize('create-role');
+        //authorize this user to access or not
         Role::updateOrCreate([
             'role_name'=>$request->role_name,
             'role_slug'=>Str::slug($request->role_name),
@@ -75,6 +83,8 @@ class RoleController extends Controller
      */
     public function edit($role_slug)
     {
+        Gate::authorize('edit-role');
+        //authorize this user to access or not
         $role = Role::with(['permissions'])->whereRole_slug($role_slug)->first();
         $modules = Module::with(['permissions:id,module_id,permission_slug,permission_name'])
             ->select('module_name','id')
@@ -89,8 +99,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $role_slug)
+    public function update(RoleUpdateRequest $request, $role_slug)
     {
+        Gate::authorize('create-role');
+        //authorize this user to access or not
         $role = Role::whereRole_slug($role_slug)->first();
         $role->update([
             'role_name'=>$request->role_name,
@@ -111,6 +123,8 @@ class RoleController extends Controller
      */
     public function destroy($role_slug)
     {
+       Gate::authorize('delete-role');
+       //authorize this user to access or not
         $role = Role::whereRole_slug($role_slug)->first();
         if($role->is_deleteable){
             $role->delete();

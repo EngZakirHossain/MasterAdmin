@@ -356,42 +356,55 @@
            <li class="menu-header small text-uppercase">
                <span class="menu-header-text">System Setting</span>
            </li>
-           <li class="menu-item">
-               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                   <i class="menu-icon tf-icons ti ti-settings"></i>
-                   <div data-i18n="Wizard Examples">Module Setting</div>
-               </a>
-               <ul class="menu-sub">
-                   <li class="menu-item">
-                       <a href="{{ route('admin.module.index') }}" class="menu-link">
-                           <div data-i18n="Checkout">Module List</div>
-                       </a>
-                   </li>
-                   <li class="menu-item">
-                       <a href="{{ route('admin.module.create') }}" class="menu-link">
-                           <div data-i18n="Property Listing">Create</div>
-                       </a>
-                   </li>
-               </ul>
-           </li>
-           <li class="menu-item">
-               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                   <i class="menu-icon tf-icons ti ti-settings"></i>
-                   <div data-i18n="Roles & Permissions">Roles & Permissions</div>
-               </a>
-               <ul class="menu-sub">
-                   <li class="menu-item">
-                       <a href="{{ route('admin.role.index') }}" class="menu-link">
-                           <div data-i18n="Roles">Roles</div>
-                       </a>
-                   </li>
-                   <li class="menu-item">
-                       <a href="{{ route('admin.permission.index') }}" class="menu-link">
-                           <div data-i18n="Permission">Permission</div>
-                       </a>
-                   </li>
-               </ul>
-           </li>
+           {{-- Module menu --}}
+           @can('index-module')
+               <li class="menu-item">
+                   <a href="javascript:void(0);" class="menu-link menu-toggle">
+                       <i class="menu-icon tf-icons ti ti-shield-lock"></i>
+                       <div data-i18n="Wizard Examples">Module Setting</div>
+                   </a>
+                   <ul class="menu-sub">
+                       <li class="menu-item">
+                           <a href="{{ route('admin.module.index') }}" class="menu-link">
+                               <div data-i18n="Checkout">Module List</div>
+                           </a>
+                       </li>
+                   </ul>
+               </li>
+           @endcan
+           {{-- permission menu --}}
+           @can('index-permission')
+               <li class="menu-item">
+                   <a href="javascript:void(0);" class="menu-link menu-toggle">
+                       <i class="menu-icon tf-icons ti ti-fingerprint"></i>
+                       <div data-i18n="Roles & Permissions">Permissions</div>
+                   </a>
+                   <ul class="menu-sub">
+                       <li class="menu-item">
+                           <a href="{{ route('admin.permission.index') }}" class="menu-link">
+                               <div data-i18n="Permission">Permission</div>
+                           </a>
+                       </li>
+                   </ul>
+               </li>
+           @endcan
+           {{-- role menu --}}
+           @can('index-role')
+               <li class="menu-item">
+                   <a href="javascript:void(0);" class="menu-link menu-toggle">
+                       <i class="menu-icon tf-icons ti ti-lock-access"></i>
+                       <div data-i18n="Roles & Permissions">Roles</div>
+                   </a>
+                   <ul class="menu-sub">
+                       <li class="menu-item">
+                           <a href="{{ route('admin.role.index') }}" class="menu-link">
+                               <div data-i18n="Roles">Roles</div>
+                           </a>
+                       </li>
+                   </ul>
+               </li>
+           @endcan
+
        </ul>
    </aside>
    <!-- / Menu -->

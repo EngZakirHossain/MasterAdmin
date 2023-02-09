@@ -18,24 +18,30 @@
                     </div>
                     <div class="card-body">
                         <!-- Add role form -->
-                        <form action="{{ route('admin.role.update',$role->role_slug) }}" id="addRoleForm" class="row g-3" method="POST">
+                        <form action="{{ route('admin.role.update', $role->role_slug) }}" id="addRoleForm" class="row g-3"
+                            method="POST">
                             @csrf
                             @method('PUT')
                             <div class="col-12 mb-4">
                                 <label class="form-label" for="role_name">Role Name</label>
-                                <input type="text" id="role_name" name="role_name" value="{{$role->role_name}}" class="form-control"
-                                    placeholder="Enter a role name" tabindex="-1" />
+                                <input type="text" id="role_name" name="role_name" value="{{ $role->role_name }}"
+                                    class="form-control" placeholder="Enter a role name" tabindex="-1" />
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text">Role Note</span>
-                                <textarea class="form-control" name="role_note"aria-label="With textarea" placeholder="Comment">{{$role->role_note}}</textarea>
+                                <textarea class="form-control" name="role_note"aria-label="With textarea" placeholder="Comment">{{ $role->role_note }}</textarea>
                             </div>
                             <div class="form-check form-switch mb-2">
                                 <input class="form-check-input" type="checkbox" id="select-all">
                                 <label class="form-check-label" for="select-all">Select All</label>
                             </div>
                             <div class="col-12">
-                                <h5>Assign Permission for Role</h5>
+                                <h5 class="@error('permissions') is-invalid  @enderror">Assign Permission for Role</h5>
+                                @error('permissions')
+                                    <span class="is-invalid text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <!-- Permission table -->
                                 <div class="table-responsive">
                                     <table class="table table-flush-spacing">
@@ -57,12 +63,9 @@
                                                                         <input class="form-check-input" name="permissions[]"
                                                                             value="{{ $permission->id }}" type="checkbox"
                                                                             id="permission_{{ $permission->id }}"
-                                                                            @if (isset($role))
-                                                                                @foreach ( $role->permissions as $rpermission)
-                                                                                {{$rpermission->id ==$permission->id ?'checked' :'' }}
-                                                                                @endforeach
-                                                                            @endif
-                                                                            />
+                                                                            @if (isset($role)) @foreach ($role->permissions as $rpermission)
+                                                                                {{ $rpermission->id == $permission->id ? 'checked' : '' }}
+                                                                                @endforeach @endif />
                                                                         <label class="form-check-label"
                                                                             for="permission_{{ $permission->id }}">
                                                                             {{ $permission->permission_name }} </label>
@@ -81,7 +84,7 @@
                             </div>
                             <div class="col-12 text-center mt-4">
                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-                                <a href="{{route('admin.role.index')}}" type="button" class="btn btn-label-secondary" >
+                                <a href="{{ route('admin.role.index') }}" type="button" class="btn btn-label-secondary">
                                     Cancel
                                 </a>
                             </div>
