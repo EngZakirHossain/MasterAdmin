@@ -109,6 +109,7 @@
                                     <th>Assign As </th>
                                     <th>User Name</th>
                                     <th>User Email</th>
+                                    <th>Active</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -121,6 +122,17 @@
                                         </td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>
+                                            {{-- <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input toggle-class" type="checkbox"
+                                                    data-id="{{ $user->id }}" id="user_{{ $user->id }}"
+                                                    {{ $user->is_active ? 'checked' : '' }}>
+                                            </div> --}}
+                                            <input data-id="{{ $user->id }}" class="toggle-class" type="checkbox"
+                                                data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
+                                                data-on="Active" data-off="InActive"
+                                                {{ $user->is_active ? 'checked' : '' }}>
+                                        </td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -322,5 +334,26 @@
                     }
                 });
         });
+        //status change
+        $(function() {
+            $('.toggle-class').change(function() {
+                var is_active = $(this).prop('checked') == true ? 1 : 0;
+                var item_id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '{{ route('admin.user.is_active') }}',
+                    data: {
+                        'is_active': is_active,
+                        'user_id': item_id
+                    },
+                    success: function(data) {
+                        console.log(data.success);
+                    }
+                });
+            })
+        });
     </script>
+
+    <script></script>
 @endpush

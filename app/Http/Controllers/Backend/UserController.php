@@ -25,7 +25,7 @@ class UserController extends Controller
         Gate::authorize('index-user');
         //authorize this user to access or not
         $users = User::with(['role:id,role_name,role_slug'])
-        ->select('id','role_id','name','email','updated_at','password')
+        ->select('id','role_id','name','email','updated_at','password','is_active')
         ->latest('id')
         ->paginate(10);
         $roles = Role::select('id','role_name',)->get();
@@ -124,5 +124,21 @@ class UserController extends Controller
         $user->delete();
         Toastr::success('User Delete Successfully', 'Success',);
         return redirect()->route('admin.users.index');
+    }
+
+    public function checkActive (Request $request){
+        $user = User::find($request->user_id);
+        if($user->is_active == 1){
+            $user->is_active = 0;
+        }else{
+            $user->is_active = 1;
+        }
+        $user->update();
+
+        return response()->json([
+            'type' => 'success',
+            'message' => 'User Status Updated',
+        ]);
+
     }
 }

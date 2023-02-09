@@ -34,5 +34,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::resource('/permission', PermissionController::class);
     Route::resource('/role', RoleController::class);
     Route::resource('/users', UserController::class);
+    Route::get('/check/user/is_active', [UserController::class,'checkActive'])->name('user.is_active');
 
 });
