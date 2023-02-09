@@ -115,20 +115,27 @@
                                                     </button>
 
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('admin.role.edit', $role->role_slug) }}">
-                                                            <i class="ti ti-pencil me-1"></i> Edit
-                                                        </a>
-                                                        <form action="{{ route('admin.role.destroy', $role->role_slug) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="dropdown-item show_confirm"
-                                                                id="confirm-color">
-                                                                <i class="ti ti-trash me-1"></i>
-                                                                Delete
-                                                            </button>
-                                                        </form>
+                                                        @can('edit-role')
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.role.edit', $role->role_slug) }}">
+                                                                <i class="ti ti-pencil me-1"></i> Edit
+                                                            </a>
+                                                        @endcan
+
+                                                        @if ($role->is_deleteable && Auth::user()->hasPermission('delete-role'))
+                                                            <form
+                                                                action="{{ route('admin.role.destroy', $role->role_slug) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="dropdown-item show_confirm"
+                                                                    id="confirm-color">
+                                                                    <i class="ti ti-trash me-1"></i>
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </td>
