@@ -17,16 +17,28 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $adminPermissionArray =[
-            'Access Dashboard',
-        ];
         $adminRolePermissionArray =[
             'Index Role',
             'Create Role',
             'Edit Role',
             'Delete Role',
         ];
-
+        $adminModulePermissionArray =[
+            'Index Module',
+            'Create Module',
+            'Edit Module',
+            'Delete Module',
+        ];
+        $adminPermissionArray =[
+            'Index Permission',
+            'Create Permission',
+            'Edit Permission',
+            'Delete Permission',
+        ];
+        $adminDashboardPermissionArray =[
+            'Access Dashboard',
+            'Report Dashboard',
+        ];
         $adminUserPermissionArray =[
             'Index User',
             'Create User',
@@ -34,25 +46,47 @@ class PermissionSeeder extends Seeder
             'Delete User',
         ];
 
+
         //access Dashboard
         $adminDashboardModule = Module::where('module_name','Admin Dashboard')->select('id')->first();
 
         Permission::updateOrCreate([
             'module_id'=>$adminDashboardModule->id,
-            'permission_name'=> $adminPermissionArray[0],
-            'permission_slug'=> Str::slug($adminPermissionArray[0]),
+            'permission_name'=> $adminDashboardPermissionArray[0],
+            'permission_slug'=> Str::slug($adminDashboardPermissionArray[0]),
         ]);
 
         //Role Management
-        $roleManagmentModule = Module::where('module_name','Role Management')->select('id')->first();
+        $roleManagment = Module::where('module_name','Role Management')->select('id')->first();
 
         for($i=0; $i<count($adminRolePermissionArray); $i++){
                     Permission::updateOrCreate([
-                        'module_id'=>$roleManagmentModule->id,
+                        'module_id'=>$roleManagment->id,
                         'permission_name'=> $adminRolePermissionArray[$i],
                         'permission_slug'=> Str::slug($adminRolePermissionArray[$i]),
                     ]);
         }
+        //Module Management
+        $moduleManagment = Module::where('module_name','Module Management')->select('id')->first();
+
+        for($i=0; $i<count($adminRolePermissionArray); $i++){
+                    Permission::updateOrCreate([
+                        'module_id'=>$moduleManagment->id,
+                        'permission_name'=> $adminModulePermissionArray[$i],
+                        'permission_slug'=> Str::slug($adminModulePermissionArray[$i]),
+                    ]);
+        }
+        //Permission Management
+        $permissionManagment = Module::where('module_name','Permission Management')->select('id')->first();
+
+        for($i=0; $i<count($adminRolePermissionArray); $i++){
+                    Permission::updateOrCreate([
+                        'module_id'=>$permissionManagment->id,
+                        'permission_name'=> $adminPermissionArray[$i],
+                        'permission_slug'=> Str::slug($adminPermissionArray[$i]),
+                    ]);
+        }
+
 
         //User Management
         $userManagmentModule = Module::where('module_name','User Management')->select('id')->first();
@@ -64,8 +98,6 @@ class PermissionSeeder extends Seeder
                         'permission_slug'=> Str::slug($adminUserPermissionArray[$i]),
                     ]);
         }
-
-
 
     }
 }
