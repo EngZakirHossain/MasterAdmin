@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
-use App\Helper\Helpers;
+use App\Helpers\Helpers;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileStoreRequest;
 use App\Http\Requests\ProfilePasswordResetRequest;
@@ -16,12 +17,16 @@ use App\Http\Requests\ProfilePasswordResetRequest;
 class ProfileController extends Controller
 {
     public function index(){
+        Gate::authorize('profile-update');
+        //authorize this user to access or not
         $user = User::with('userInfo')->find(Auth::id());
         return view('admin.pages.profile.index',compact('user'));
     }
 
     public function updateProfile(ProfileStoreRequest $request){
 
+        Gate::authorize('profile-update');
+        //authorize this user to access or not
         $user = User::find($request->id);
         $user->update([
             'name' => $request->name,
@@ -53,9 +58,13 @@ class ProfileController extends Controller
     }
 
     public function password(){
+        Gate::authorize('password-update');
+        //authorize this user to access or not
         return view('admin.pages.profile.resetPassword');
     }
     public function updatePassword(ProfilePasswordResetRequest $request){
+        Gate::authorize('password-update');
+        //authorize this user to access or not
        $user = Auth::user();
         $hashedPassword = $user->password;
 
