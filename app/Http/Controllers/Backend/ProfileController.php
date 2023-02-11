@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileStoreRequest;
+use App\Http\Requests\ProfilePasswordResetRequest;
 
 class ProfileController extends Controller
 {
@@ -48,5 +50,34 @@ class ProfileController extends Controller
         }
         Toastr::success('User Updated Successfully', 'Success',);
         return back();
+    }
+
+    public function password(){
+        return view('admin.pages.profile.resetPassword');
+    }
+    public function updatePassword(ProfilePasswordResetRequest $request){
+       $user = Auth::user();
+        $hashedPassword = $user->password;
+
+        // existing password === request password
+        if(Hash::check($request->old_password, $hashedPassword)){
+
+            // new password == old stored passowrd
+            if(!Hash::check($request->password, $hashedPassword)){
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+
+            Auth::logout();
+            Toastr::success('password updated successfully','success');
+            return redirect()->route('login');
+            }else{
+                Toastr::error('New Password cannot be the same as old password','error');
+                return back();
+            }
+        }else{
+            Toastr::error("Old Password doesn't match",'error');
+            return back();
+        }
     }
 }

@@ -44,7 +44,7 @@
            </li>
            {{-- user menu --}}
            @can('index-user')
-               <li class="menu-item @if (request()->routeIs('admin.users.index','admin.user.profile')) active open @endif">
+               <li class="menu-item @if (request()->routeIs('admin.users.index', 'admin.user.profile', 'admin.user.password')) active open @endif">
                    <a href="javascript:void(0);" class="menu-link menu-toggle">
                        <i class="menu-icon tf-icons ti ti-users"></i>
                        <div data-i18n="Users">Users</div>
@@ -55,7 +55,7 @@
                                <div data-i18n="List">List</div>
                            </a>
                        </li>
-                       <li class="menu-item @if (request()->routeIs('admin.user.profile')) active open @endif">
+                       <li class="menu-item @if (request()->routeIs('admin.user.profile', 'admin.user.password')) active open @endif">
                            <a href="javascript:void(0);" class="menu-link menu-toggle">
                                <div data-i18n="View">View</div>
                            </a>
@@ -65,24 +65,19 @@
                                        <div data-i18n="Account">Profile</div>
                                    </a>
                                </li>
-                               <li class="menu-item">
-                                   <a href="app-user-view-security.html" class="menu-link">
+                               <li class="menu-item @if (request()->routeIs('admin.user.password')) active @endif">
+                                   <a href="{{ route('admin.user.password') }}" class="menu-link">
                                        <div data-i18n="Security">Security</div>
                                    </a>
                                </li>
                                <li class="menu-item">
-                                   <a href="app-user-view-billing.html" class="menu-link">
+                                   <a href="#" class="menu-link">
                                        <div data-i18n="Billing & Plans">Billing & Plans</div>
                                    </a>
                                </li>
                                <li class="menu-item">
-                                   <a href="app-user-view-notifications.html" class="menu-link">
+                                   <a href="#" class="menu-link">
                                        <div data-i18n="Notifications">Notifications</div>
-                                   </a>
-                               </li>
-                               <li class="menu-item">
-                                   <a href="app-user-view-connections.html" class="menu-link">
-                                       <div data-i18n="Connections">Connections</div>
                                    </a>
                                </li>
                            </ul>

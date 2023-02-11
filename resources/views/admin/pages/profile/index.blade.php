@@ -1,35 +1,14 @@
 @extends('admin.layouts.master')
-@section('page_title', 'Permission')
+@section('page_title', 'User Profile')
 @push('admin_style')
 @endpush
 @section('admin_content')
     <div class="row">
         <div class="col">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> User Profile</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Update Profile</h4>
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="nav nav-pills flex-column flex-md-row mb-4">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0);"><i class="ti-xs ti ti-users me-1"></i>
-                                Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages-account-settings-security.html"><i
-                                    class="ti-xs ti ti-lock me-1"></i> Security</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages-account-settings-billing.html"><i
-                                    class="ti-xs ti ti-file-description me-1"></i> Billing & Plans</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages-account-settings-notifications.html"><i
-                                    class="ti-xs ti ti-bell me-1"></i> Notifications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages-account-settings-connections.html"><i
-                                    class="ti-xs ti ti-link me-1"></i> Connections</a>
-                        </li>
-                    </ul>
+                    @include('admin.pages.profile.profileMenu')
                     <div class="card mb-4">
                         <h5 class="card-header">Profile Details</h5>
                         <form action="{{ route('admin.user.profile.store') }}" id="formAccountSettings" method="POST"
@@ -42,8 +21,8 @@
                                         <img src="{{ asset('storage/uploads/users') }}/{{ $user->userInfo->user_image }}"
                                             class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
                                     @else
-                                    <img src="{{ asset('admin') }}/assets/img/avatars/1.png" alt="user-avatar"
-                                        class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
+                                        <img src="{{ asset('admin') }}/assets/img/avatars/1.png" alt="user-avatar"
+                                            class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
                                     @endif
 
                                     <div class="button-wrapper">

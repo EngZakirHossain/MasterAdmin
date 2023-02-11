@@ -120,7 +120,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('admin.user.password') }}">
                             <i class="ti ti-lock me-2 ti-sm"></i>
                             <span class="align-middle">Change Password</span>
                         </a>

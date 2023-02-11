@@ -37,7 +37,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::resource('/users', UserController::class);
     Route::get('/check/user/is_active', [UserController::class,'checkActive'])->name('user.is_active');
     //Profile Controller
-    Route::get('/profile', [ProfileController::class,'index'])->name('user.profile');
-    Route::post('/profile', [ProfileController::class,'updateProfile'])->name('user.profile.store');
+    Route::get('/update-profile', [ProfileController::class,'index'])->name('user.profile');
+    Route::post('/update-profile', [ProfileController::class,'updateProfile'])->name('user.profile.store');
+    Route::get('/update-password', [ProfileController::class,'password'])->name('user.password');
+    Route::post('/update-password', [ProfileController::class,'updatePassword'])->name('user.password.reset');
 
 });
