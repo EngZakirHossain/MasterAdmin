@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Role;
+use App\Models\User;
 use App\Models\Module;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -24,8 +25,10 @@ class RoleController extends Controller
         Gate::authorize('index-role');
         //authorize this user to access or not
         $roles = Role::with(['permissions:id,permission_name,permission_slug'])
+        ->with(['user:role_id,id'])
         ->select(['id','role_name','role_slug','is_deleteable','updated_at'])
         ->paginate(10);
+        // $users = User::select('role_id')->get();
         return view('admin.pages.role.index',compact('roles'));
     }
 

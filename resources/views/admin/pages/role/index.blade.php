@@ -17,37 +17,25 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="fw-normal mb-2">Total {{ $role->role_name }}</h6>
+                                    <h6 class="fw-normal mb-2">Total {{ count($role->user) }} {{ $role->role_name }}</h6>
                                     <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                            title="Vinnie Mostowy" class="avatar avatar-sm pull-up">
-                                            <img class="rounded-circle" src="{{ asset('admin') }}/assets/img/avatars/1.png"
-                                                alt="Avatar" />
-                                        </li>
-                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                            title="Allen Rieske" class="avatar avatar-sm pull-up">
-                                            <img class="rounded-circle" src="{{ asset('admin') }}/assets/img/avatars/1.png"
-                                                alt="Avatar" />
-                                        </li>
-                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                            title="Julee Rossignol" class="avatar avatar-sm pull-up">
-                                            <img class="rounded-circle" src="{{ asset('admin') }}/assets/img/avatars/1.png"
-                                                alt="Avatar" />
-                                        </li>
-                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                            title="Kaith D'souza" class="avatar avatar-sm pull-up">
-                                            <img class="rounded-circle" src="{{ asset('admin') }}/assets/img/avatars/1.png"
-                                                alt="Avatar" />
-                                        </li>
+                                        @foreach ($role->user as $euser)
+                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
+                                                title="Vinnie Mostowy" class="avatar avatar-sm pull-up">
+                                                <img class="rounded-circle"
+                                                    src="{{ asset('admin') }}/assets/img/avatars/1.png" alt="Avatar" />
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-end mt-1">
                                     <div class="role-heading">
                                         <h4 class="mb-1">{{ $role->role_name }}</h4>
-                                        <a href="javascript:;" data-bs-toggle="modal" class="role-edit-modal"><span>Edit
-                                                Role</span></a>
+                                        <a href="{{ route('admin.role.edit', $role->role_slug) }}"
+                                            class="role-edit-modal"><span>Edit Role</span></a>
                                     </div>
-                                    <a href="javascript:void(0);" class="text-muted"><i class="ti ti-copy ti-md"></i></a>
+                                    <a href="javascript:void(0);" class="text-muted"><i
+                                            class="menu-icon tf-icons ti ti-fingerprint"></i></a>
                                 </div>
                             </div>
                         </div>
