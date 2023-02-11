@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
 use App\Helper\Helpers;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileStoreRequest;
-use App\Models\UserInfo;
 
 class ProfileController extends Controller
 {
@@ -19,10 +20,9 @@ class ProfileController extends Controller
 
     public function updateProfile(ProfileStoreRequest $request){
 
-        $user = User::find($request->id)->first();
+        $user = User::find($request->id);
         $user->update([
             'name' => $request->name,
-            'email' => $request->email,
         ]);
         $userInfo = UserInfo::where('user_id',$user->id)->first();
         // dd($userInfo);
@@ -46,9 +46,7 @@ class ProfileController extends Controller
             'zipCode' => $request->zipCode,
         ]);
         }
-
-
-
+        Toastr::success('User Updated Successfully', 'Success',);
         return back();
     }
 }

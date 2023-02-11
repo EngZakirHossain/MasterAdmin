@@ -74,7 +74,7 @@
                                     <div class="mb-3 col-md-6">
                                         <label for="email" class="form-label">E-mail</label>
                                         <input class="form-control" type="text" id="email" name="email"
-                                            value="{{ $user->email }}" placeholder="john.doe@example.com" />
+                                            value="{{ $user->email }}" placeholder="john.doe@example.com" disabled />
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label" for="phoneNumber">Phone Number</label>

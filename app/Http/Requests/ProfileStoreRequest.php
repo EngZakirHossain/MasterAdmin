@@ -25,12 +25,11 @@ class profileStoreRequest extends FormRequest
     {
         return [
             'name' =>'required|string|max:255',
-            'email'=>'required|email|max:255',
             'user_image'=>'nullable|image|mimes:png,jpg',
-            'phone'=>'required|string|max:255',
-            'address'=>'required|string|max:255',
-            'state'=>'required|string|max:255',
-            'zipCode'=>'required|string|max:255',
+            'phone'=>'nullable|string|max:255',
+            'address'=>'nullable|string|max:255',
+            'state'=>'nullable|string|max:255',
+            'zipCode'=>'nullable|string|max:255',
         ];
     }
 }

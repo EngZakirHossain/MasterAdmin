@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Helper\Helpers;
+use App\Models\UserInfo;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -121,6 +123,9 @@ class UserController extends Controller
         Gate::authorize('delete-user');
         //authorize this user to access or not
         $user = User::find($id);
+        $userImage = UserInfo::where('user_id',$user->id)->first();
+        Helpers::delete('uploads/users/' . $userImage->user_image);
+
         $user->delete();
         Toastr::success('User Delete Successfully', 'Success',);
         return redirect()->route('admin.users.index');

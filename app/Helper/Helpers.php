@@ -27,5 +27,15 @@ class Helpers
         $imageName = Helpers::upload($dir, $format, $image);
         return $imageName;
     }
+    public static function delete($full_path)
+    {
+        if (Storage::disk('public')->exists($full_path)) {
+            Storage::disk('public')->delete($full_path);
+        }
+        return [
+            'success' => 1,
+            'message' => 'Removed successfully'
+        ];
+    }
 
 }
