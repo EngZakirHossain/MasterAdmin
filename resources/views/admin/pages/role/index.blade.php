@@ -20,11 +20,26 @@
                                     <h6 class="fw-normal mb-2">Total {{ count($role->user) }} {{ $role->role_name }}</h6>
                                     <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
                                         @foreach ($role->user as $euser)
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                                title="Vinnie Mostowy" class="avatar avatar-sm pull-up">
-                                                <img class="rounded-circle"
-                                                    src="{{ asset('admin') }}/assets/img/avatars/1.png" alt="Avatar" />
-                                            </li>
+                                            <?php
+                                            $userInfo = App\Models\UserInfo::where('user_id', $euser->id)->first();
+                                            ?>
+                                            @if ($userInfo != null)
+                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                    data-bs-placement="top" title="{{ $euser->name }}"
+                                                    class="avatar avatar-sm pull-up">
+                                                    <img class="rounded-circle"
+                                                        src="{{ asset('storage/uploads/users') }}/{{ $userInfo->user_image }}"
+                                                        alt="{{ $euser->name }}" />
+                                                </li>
+                                            @else
+                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                    data-bs-placement="top" title="{{ $euser->name }}"
+                                                    class="avatar avatar-sm pull-up">
+                                                    <img class="rounded-circle"
+                                                        src="{{ asset('admin') }}/assets/img/avatars/1.png"
+                                                        alt="{{ $euser->name }}" />
+                                                </li>
+                                            @endif
                                         @endforeach
                                     </ul>
                                 </div>

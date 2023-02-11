@@ -25,7 +25,7 @@ class RoleController extends Controller
         Gate::authorize('index-role');
         //authorize this user to access or not
         $roles = Role::with(['permissions:id,permission_name,permission_slug'])
-        ->with(['user:role_id,id'])
+        ->with(['user:role_id,id,name'])
         ->select(['id','role_name','role_slug','is_deleteable','updated_at'])
         ->paginate(10);
         // $users = User::select('role_id')->get();
