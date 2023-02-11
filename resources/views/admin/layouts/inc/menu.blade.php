@@ -44,7 +44,7 @@
            </li>
            {{-- user menu --}}
            @can('index-user')
-               <li class="menu-item @if (request()->routeIs('admin.users.index')) active open @endif">
+               <li class="menu-item @if (request()->routeIs('admin.users.index','admin.user.profile')) active open @endif">
                    <a href="javascript:void(0);" class="menu-link menu-toggle">
                        <i class="menu-icon tf-icons ti ti-users"></i>
                        <div data-i18n="Users">Users</div>
@@ -55,14 +55,14 @@
                                <div data-i18n="List">List</div>
                            </a>
                        </li>
-                       <li class="menu-item">
+                       <li class="menu-item @if (request()->routeIs('admin.user.profile')) active open @endif">
                            <a href="javascript:void(0);" class="menu-link menu-toggle">
                                <div data-i18n="View">View</div>
                            </a>
                            <ul class="menu-sub">
-                               <li class="menu-item">
-                                   <a href="app-user-view-account.html" class="menu-link">
-                                       <div data-i18n="Account">Account</div>
+                               <li class="menu-item @if (request()->routeIs('admin.user.profile')) active @endif">
+                                   <a href="{{ route('admin.user.profile') }}" class="menu-link">
+                                       <div data-i18n="Account">Profile</div>
                                    </a>
                                </li>
                                <li class="menu-item">

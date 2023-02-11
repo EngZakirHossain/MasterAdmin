@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function hasPermission($permission_slug){
         return $this->role->permissions()->where('permission_slug',$permission_slug)->first() ? true :false;
     }
+    // Relationship with UserInfo
+    public function userInfo(){
+        return $this->hasOne(UserInfo::class);
+    }
 }

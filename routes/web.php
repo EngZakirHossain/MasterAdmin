@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\ModuleController;
 use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UserController;
 
 /*
@@ -35,5 +36,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::resource('/role', RoleController::class);
     Route::resource('/users', UserController::class);
     Route::get('/check/user/is_active', [UserController::class,'checkActive'])->name('user.is_active');
+    //Profile Controller
+    Route::get('/profile', [ProfileController::class,'index'])->name('user.profile');
+    Route::post('/profile', [ProfileController::class,'updateProfile'])->name('user.profile.store');
 
 });
