@@ -29,8 +29,8 @@ class GeneralSettingUpdateRequest extends FormRequest
             'site_email' => 'required|string|max:255',
             'site_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'site_description' => 'nullable|string|max:255',
-            'site_logo' => 'nullable|string|image|mimes:png,jpg',
-            'site_favicon' => 'nullable|string|image|mimes:png,jpg',
+            'site_logo' => 'nullable|image|mimes:png,jpg',
+            'site_favicon' => 'nullable|image|mimes:png,jpg',
         ];
     }
 }
