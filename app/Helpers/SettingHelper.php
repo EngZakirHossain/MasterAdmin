@@ -12,6 +12,6 @@ if (!function_exists('setting')) {
      */
     function setting($key,$default=null)
     {
-        return Setting::getByName($key,$default);
+        return Setting::getBykey($key,$default);
     }
 }

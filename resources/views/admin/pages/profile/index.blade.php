@@ -117,7 +117,7 @@
         </div>
 
     </div>
-    </div>
+
 @endsection
 @push('admin_scipt')
     <script type="text/javascript">
