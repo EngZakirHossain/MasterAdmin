@@ -144,7 +144,7 @@
            </li>
            {{-- Module menu --}}
            {{-- @can('index-module') --}}
-           <li class="menu-item @if (request()->routeIs('admin.settings.general')) active open @endif">
+           <li class="menu-item @if (request()->routeIs('admin.settings.general', 'admin.backup.index')) active open @endif">
                <a href="javascript:void(0);" class="menu-link menu-toggle">
                    <i class="menu-icon tf-icons ti ti-tool"></i>
                    <div data-i18n="Wizard Examples">Site Setting </div>
@@ -153,6 +153,13 @@
                    <li class="menu-item @if (request()->routeIs('admin.settings.general')) active @endif">
                        <a href="{{ route('admin.settings.general') }}" class="menu-link">
                            <div data-i18n="Checkout">General Setting</div>
+                       </a>
+                   </li>
+               </ul>
+               <ul class="menu-sub">
+                   <li class="menu-item @if (request()->routeIs('admin.backup.index')) active @endif">
+                       <a href="{{ route('admin.backup.index') }}" class="menu-link">
+                           <div data-i18n="Checkout">Database Backup</div>
                        </a>
                    </li>
                </ul>

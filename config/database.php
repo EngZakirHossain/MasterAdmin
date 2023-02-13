@@ -60,6 +60,7 @@ return [
             'engine' => null,
             'dump' =>[
                 'dump_binary_path' => 'C:\xampp\mysql\bin', //only the path where the xampp install or mysql dump
+                /*For server use only : ['dump_binary_path' =>yourdomainname/project_name/public] */
                 'use_single_transaction',
                 'timeout' =>60*5, //5 mins timeout
             ],
