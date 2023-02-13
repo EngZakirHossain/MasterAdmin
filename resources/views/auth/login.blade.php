@@ -97,16 +97,19 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
+                        <a href="{{ route('login.provider', ['provider' => 'facebook']) }}"
+                            class="btn btn-icon btn-label-facebook me-3">
                             <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
                         </a>
 
-                        <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
+                        <a href="{{ route('login.provider', ['provider' => 'google']) }}"
+                            class="btn btn-icon btn-label-google-plus me-3">
                             <i class="tf-icons fa-brands fa-google fs-5"></i>
                         </a>
 
-                        <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-                            <i class="tf-icons fa-brands fa-twitter fs-5"></i>
+                        <a href="{{ route('login.provider', ['provider' => 'github']) }}"
+                            class="btn btn-icon btn-label-github">
+                            <i class="tf-icons fa-brands fa-github fs-5"></i>
                         </a>
                     </div>
                 </div>

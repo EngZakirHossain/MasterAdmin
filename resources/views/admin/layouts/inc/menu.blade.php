@@ -143,7 +143,7 @@
                <span class="menu-header-text">Setting</span>
            </li>
            {{-- Module menu --}}
-           {{-- @can('index-module') --}}
+           @can('general-setting')
            <li class="menu-item @if (request()->routeIs('admin.settings.general', 'admin.backup.index')) active open @endif">
                <a href="javascript:void(0);" class="menu-link menu-toggle">
                    <i class="menu-icon tf-icons ti ti-tool"></i>
@@ -164,7 +164,7 @@
                    </li>
                </ul>
            </li>
-           {{-- @endcan --}}
+           @endcan
 
        </ul>
    </aside>
