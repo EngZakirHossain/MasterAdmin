@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\BackupController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -36,6 +37,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::resource('/permission', PermissionController::class);
     Route::resource('/role', RoleController::class);
     Route::resource('/users', UserController::class);
+    Route::resource('/backup', BackupController::class)->only(['index','store','destroy']);
     Route::get('/check/user/is_active', [UserController::class,'checkActive'])->name('user.is_active');
     //Profile Controller
     Route::get('/update-profile', [ProfileController::class,'index'])->name('user.profile');

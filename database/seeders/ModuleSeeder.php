@@ -16,7 +16,15 @@ class ModuleSeeder extends Seeder
      */
     public function run()
     {
-        $moduleArray = ['Admin Dashboard','Role Management','Permission Management','Module Management','User Management',];
+        $moduleArray = [
+            'Admin Dashboard',
+            'Role Management',
+            'Permission Management',
+            'Module Management',
+            'User Management',
+            'Setting Management',
+            'Backup Management',
+        ];
 
         foreach($moduleArray as $module){
            Module::updateOrCreate([

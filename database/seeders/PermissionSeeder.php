@@ -52,6 +52,12 @@ class PermissionSeeder extends Seeder
             'Social Media Setting ',
             'Social Media Setting update',
         ];
+        $backupPermissionArray =[
+            'Index Backup',
+            'Create Backup',
+            'Edit Backup',
+            'Delete Backup',
+        ];
 
 
         //access Dashboard
@@ -108,11 +114,21 @@ class PermissionSeeder extends Seeder
         //Setting  Management
         $AdminSettingManagmentModule = Module::where('module_name','Setting Management')->select('id')->first();
 
-        for($i=0; $i<count($AdminSettingManagmentModule); $i++){
+        for($i=0; $i<count($adminSettingPermissionArray); $i++){
                     Permission::updateOrCreate([
-                        'module_id'=>$userManagmentModule->id,
+                        'module_id'=>$AdminSettingManagmentModule->id,
                         'permission_name'=> $adminSettingPermissionArray[$i],
                         'permission_slug'=> Str::slug($adminSettingPermissionArray[$i]),
+                    ]);
+        }
+        //Backup  Management
+        $BackupManagmentModule = Module::where('module_name','Backup Management')->select('id')->first();
+
+        for($i=0; $i<count($backupPermissionArray); $i++){
+                    Permission::updateOrCreate([
+                        'module_id'=>$BackupManagmentModule->id,
+                        'permission_name'=> $backupPermissionArray[$i],
+                        'permission_slug'=> Str::slug($backupPermissionArray[$i]),
                     ]);
         }
 
