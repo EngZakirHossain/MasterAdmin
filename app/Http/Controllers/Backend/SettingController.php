@@ -7,6 +7,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\MailSettingUpdateRequest;
 use App\Http\Requests\GeneralSettingUpdateRequest;
@@ -15,11 +16,12 @@ use App\Http\Requests\SocialMediaSettingUpdateRequest;
 class SettingController extends Controller
 {
     public function general(){
+        Gate::authorize('general-setting');
         return view('admin.pages.settings.general');
     }
     public function generalUpdate(GeneralSettingUpdateRequest $request){
 
-        // dd($request->all());
+        Gate::authorize('general-setting-update');
         Setting::updateOrCreate(
             ['key' => 'site_title'],
             ['value' => $request->site_title,]
@@ -69,10 +71,11 @@ class SettingController extends Controller
 
 //social Media
     public function socialMedia(){
+        Gate::authorize('social-media-setting');
         return view('admin.pages.settings.socialMedia');
     }
     public function socialMediaUpdate(SocialMediaSettingUpdateRequest $request){
-
+        Gate::authorize('social-media-setting-update');
         Setting::updateOrCreate(
             ['key' => 'site_facebook_link'],
             ['value' => $request->site_facebook_link],
@@ -101,13 +104,13 @@ class SettingController extends Controller
 
     public function mailView()
     {
-        // Gate::authorize('mail-setting-view');
+        Gate::authorize('mail-setting');
         return view('admin.pages.settings.mail');
     }
 
     public function mailUpdate(MailSettingUpdateRequest $request)
     {
-        // Gate::authorize('mail-setting-update');
+        Gate::authorize('mail-setting-update');
         Setting::updateOrCreate(
             ['key' => 'mail_mailer'],
             ['value' => $request->mail_mailer],

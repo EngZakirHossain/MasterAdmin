@@ -45,6 +45,13 @@ class PermissionSeeder extends Seeder
             'Edit User',
             'Delete User',
         ];
+         $adminSettingPermissionArray =[
+            'General Setting',
+            'General Setting Update',
+            'Mail Setting',
+            'Social Media Setting ',
+            'Social Media Setting update',
+        ];
 
 
         //access Dashboard
@@ -96,6 +103,16 @@ class PermissionSeeder extends Seeder
                         'module_id'=>$userManagmentModule->id,
                         'permission_name'=> $adminUserPermissionArray[$i],
                         'permission_slug'=> Str::slug($adminUserPermissionArray[$i]),
+                    ]);
+        }
+        //Setting  Management
+        $AdminSettingManagmentModule = Module::where('module_name','Setting Management')->select('id')->first();
+
+        for($i=0; $i<count($AdminSettingManagmentModule); $i++){
+                    Permission::updateOrCreate([
+                        'module_id'=>$userManagmentModule->id,
+                        'permission_name'=> $adminSettingPermissionArray[$i],
+                        'permission_slug'=> Str::slug($adminSettingPermissionArray[$i]),
                     ]);
         }
 
