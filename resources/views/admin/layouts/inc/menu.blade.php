@@ -140,30 +140,36 @@
 
            <!-- Setting & Pages -->
            <li class="menu-header small text-uppercase">
-               <span class="menu-header-text">Setting</span>
+               <span class="menu-header-text">System Setting</span>
            </li>
            {{-- Module menu --}}
            @can('general-setting')
-           <li class="menu-item @if (request()->routeIs('admin.settings.general', 'admin.backup.index')) active open @endif">
-               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                   <i class="menu-icon tf-icons ti ti-tool"></i>
-                   <div data-i18n="Wizard Examples">Site Setting </div>
-               </a>
-               <ul class="menu-sub">
-                   <li class="menu-item @if (request()->routeIs('admin.settings.general')) active @endif">
-                       <a href="{{ route('admin.settings.general') }}" class="menu-link">
-                           <div data-i18n="Checkout">General Setting</div>
-                       </a>
-                   </li>
-               </ul>
-               <ul class="menu-sub">
-                   <li class="menu-item @if (request()->routeIs('admin.backup.index')) active @endif">
-                       <a href="{{ route('admin.backup.index') }}" class="menu-link">
-                           <div data-i18n="Checkout">Database Backup</div>
-                       </a>
-                   </li>
-               </ul>
-           </li>
+               <li class="menu-item @if (request()->routeIs('admin.settings.general', 'admin.backup.index')) active open @endif">
+                   <a href="javascript:void(0);" class="menu-link menu-toggle">
+                       <i class="menu-icon tf-icons ti ti-tool"></i>
+                       <div data-i18n="Wizard Examples">Buniness Setup </div>
+                   </a>
+                   <ul class="menu-sub">
+                       <li class="menu-item @if (request()->routeIs('admin.settings.general')) active @endif">
+                           <a href="{{ route('admin.settings.general') }}" class="menu-link">
+                               <div data-i18n="Checkout">General Setup</div>
+                           </a>
+                       </li>
+                   </ul>
+                   <ul class="menu-sub">
+                       <li class="menu-item @if (request()->routeIs('admin.backup.index')) active @endif">
+                           <a href="{{ route('admin.backup.index') }}" class="menu-link">
+                               <div data-i18n="Checkout">Database Backup</div>
+                           </a>
+                       </li>
+                   </ul>
+               </li>
+               <li class="menu-item @if (request()->routeIs('admin.settings.socialite')) active open @endif">
+                   <a href="{{ route('admin.settings.socialite') }}" class="menu-link">
+                       <i class="menu-icon tf-icons ti ti-cloud-data-connection"></i>
+                       <div data-i18n="Dashboards">3rd Party</div>
+                   </a>
+               </li>
            @endcan
 
        </ul>

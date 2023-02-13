@@ -63,6 +63,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
          //Mail setting
         Route::get('mail',[SettingController::class,'mailView'])->name('mail');
         Route::post('mail',[SettingController::class,'mailUpdate'])->name('mail.update');
+         //Social Login setting
+        Route::get('socialite',[SettingController::class,'socialiteView'])->name('socialite');
+        Route::post('socialite',[SettingController::class,'socialiteUpdate'])->name('socialite.update');
     });
 
 });

@@ -50,7 +50,9 @@ class PermissionSeeder extends Seeder
             'General Setting Update',
             'Mail Setting',
             'Social Media Setting ',
-            'Social Media Setting update',
+            'Social Media Setting Update',
+            'Socialite Setting',
+            'Socialite Setting Update',
         ];
         $backupPermissionArray =[
             'Index Backup',
