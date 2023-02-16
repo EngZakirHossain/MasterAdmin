@@ -24,8 +24,8 @@ use App\Http\Controllers\Backend\PermissionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+     return view('auth.login');
+})->middleware(['auth']);
 
 Auth::routes();
 //Social media login
