@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\ModuleController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\SMSModuleController;
 use App\Http\Controllers\Backend\PermissionController;
 
 /*
@@ -66,6 +67,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
          //Social Login setting
         Route::get('socialite',[SettingController::class,'socialiteView'])->name('socialite');
         Route::post('socialite',[SettingController::class,'socialiteUpdate'])->name('socialite.update');
+        //sms module controller
+        Route::get('smsconfig',[SMSModuleController::class,'sms_index'])->name('sms_index');
+        Route::post('sms-module-update/{module}',[SMSModuleController::class,'sms_update'])->name('sms_module_update');
     });
 
 });

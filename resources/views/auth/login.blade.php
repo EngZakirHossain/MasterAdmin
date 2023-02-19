@@ -55,8 +55,9 @@
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                placeholder="Enter your email" autofocus />
+                            <input type="text"
+                                class="form-control @error('email') is-invalid   @enderror"
+                                id="email" name="email" placeholder="Enter your email" autofocus />
                         </div>
                         @error('email')
                             <span class="invalid-feedback" role="alert">

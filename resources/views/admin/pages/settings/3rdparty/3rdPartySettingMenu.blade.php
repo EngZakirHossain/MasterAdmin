@@ -5,7 +5,8 @@
             Socialite Login</a>
     </li>
     <li class="nav-item ">
-        <a class="nav-link " href="#"><i class="ti-xs ti ti-link me-1"></i>
+        <a class="nav-link @if (request()->routeIs('admin.settings.sms_index')) active @endif"
+            href="{{ route('admin.settings.sms_index') }}"><i class="ti-xs ti ti-link me-1"></i>
             SMS Config</a>
     </li>
 

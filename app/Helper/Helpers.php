@@ -1,5 +1,6 @@
 <?php
 namespace App\Helper;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 
 class Helpers
@@ -36,6 +37,19 @@ class Helpers
             'success' => 1,
             'message' => 'Removed successfully'
         ];
+    }
+
+    public static function get_business_settings($name)
+    {
+        $config = null;
+        $data = Setting::where(['key' => $name])->first();
+        if (isset($data)) {
+            $config = json_decode($data['value'], true);
+            if (is_null($config)) {
+                $config = $data['value'];
+            }
+        }
+        return $config;
     }
 
 }
