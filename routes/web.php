@@ -95,3 +95,22 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::post('sslcommerz/cancel',[SslCommerzPaymentController::class,'cancel'])->name('ssl-cancel');
     Route::post('sslcommerz/ipn',[SslCommerzPaymentController::class,'ipn'])->name('ssl-ipn');
     //SSLCOMMERZ END
+    //stripe payment Route
+
+    Route::get('pay-stripe', 'StripePaymentController@payment_process_3d')->name('pay-stripe');
+    Route::get('pay-stripe/success', 'StripePaymentController@success')->name('pay-stripe.success');
+    Route::get('pay-stripe/fail', 'StripePaymentController@success')->name('pay-stripe.fail');
+
+    //bkash
+    Route::group(['prefix'=>'bkash'], function () {
+        // Payment Routes for bKash
+        Route::post('get-token', 'BkashPaymentController@getToken')->name('bkash-get-token');
+        Route::post('create-payment', 'BkashPaymentController@createPayment')->name('bkash-create-payment');
+        Route::post('execute-payment', 'BkashPaymentController@executePayment')->name('bkash-execute-payment');
+        Route::get('query-payment', 'BkashPaymentController@queryPayment')->name('bkash-query-payment');
+        Route::post('success', 'BkashPaymentController@bkashSuccess')->name('bkash-success');
+
+        // Refund Routes for bKash
+        Route::get('refund', 'BkashRefundController@index')->name('bkash-refund');
+        Route::post('refund', 'BkashRefundController@refund')->name('bkash-refund');
+    });
