@@ -215,41 +215,56 @@
                 </div>
                 <div class="card-body">
                     <div class="row row-bordered g-0">
-                        <div class="col-md-4">
-                            <h3 class="text-center pt-4 mb-0">$25</h3>
-                            <div class="px-3">
-                                <div id="budgetChart"></div>
-                            </div>
-                            @php($config = \App\Helper\Helpers::get_business_settings('ssl_commerz_payment'))
+                        @php($config = \App\Helper\Helpers::get_business_settings('paypal'))
 
-                            @php($callback = session('callback'))
-                            @if (isset($config) && $config['status'])
-                                <div class="col-md-6 mb-4" style="cursor: pointer">
-                                    <div class="card" onclick="$('#ssl-form').submit()">
-                                        <div class="card-body" style="height: 70px">
-                                            <form class="needs-validation" method="POST" id="payment-form"
-                                                action="{!! route('pay-paypal', [
-                                                    'order_amount' => 25,
-                                                    'customer_id' => Auth::user()->id,
-                                                    'callback' => $callback,
-                                                ]) !!}">
-                                                @csrf
-                                                <button class="btn btn-block click-if-alone" type="submit">
-                                                    <img width="100"
-                                                        src="{{ asset('admin/assets/img/icons/payments/paypal.png') }}" />
-                                                </button>
-                                            </form>
-                                        </div>
+                        @php($callback = session('callback'))
+                        @if (isset($config) && $config['status'])
+                            <div class="col-md-6 mb-4" style="cursor: pointer">
+                                <div class="card" onclick="$('#ssl-form').submit()">
+                                    <div class="card-body" style="height: 70px">
+                                        <form class="needs-validation" method="POST" id="payment-form"
+                                            action="{!! route('pay-paypal', [
+                                                'order_amount' => 25,
+                                                'customer_id' => Auth::user()->id,
+                                                'callback' => $callback,
+                                            ]) !!}">
+                                            @csrf
+                                            <button class="btn btn-block click-if-alone" type="submit">
+                                                <img width="100"
+                                                    src="{{ asset('admin/assets/img/icons/payments/paypal.png') }}" />
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
-                            @endif
+                            </div>
+                        @endif
 
-                        </div>
+                        @php($config = \App\Helper\Helpers::get_business_settings('ssl_commerz_payment'))
+                        @if (isset($config) && $config['status'])
+                            <div class="col-md-6 mb-4" style="cursor: pointer">
+                                <div class="card" onclick="$('#ssl-form').submit()">
+                                    <div class="card-body" style="height: 70px">
+                                        <form action="{!! route('pay-ssl', [
+                                            'order_amount' => 25,
+                                            'customer_id' => Auth::user()->id,
+                                            'callback' => $callback,
+                                        ]) !!}" method="POST" class="needs-validation"
+                                            id="ssl-form">
+                                            <input type="hidden" value="{{ csrf_token() }}" name="_token" />
+                                            <button class="btn btn-block click-if-alone" type="submit">
+                                                <img width="100"
+                                                    src="{{ asset('admin/assets/img/icons/payments/sslcomz.png') }}" />
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 @push('admin_scipt')

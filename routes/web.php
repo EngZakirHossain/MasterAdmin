@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ModuleController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SMSModuleController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\Backend\PermissionController;
 
 /*
@@ -86,3 +87,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::get('paypal-fail', [PaypalPaymentController::class,'paymentFail'])->name('payment-fail');
     Route::get('payment-success', [PaypalPaymentController::class,'paymentSuccess'])->name('payment-success');
     /*paypal*/
+
+    //SSLCOMMERZ Start
+    Route::post('sslcommerz/pay', [SslCommerzPaymentController::class,'index'])->name('pay-ssl');
+    Route::post('sslcommerz/success',[SslCommerzPaymentController::class,'success'])->name('ssl-success');
+    Route::post('sslcommerz/failure',[SslCommerzPaymentController::class,'fail'])->name('ssl-failure');
+    Route::post('sslcommerz/cancel',[SslCommerzPaymentController::class,'cancel'])->name('ssl-cancel');
+    Route::post('sslcommerz/ipn',[SslCommerzPaymentController::class,'ipn'])->name('ssl-ipn');
+    //SSLCOMMERZ END

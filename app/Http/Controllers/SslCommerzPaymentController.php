@@ -78,7 +78,7 @@ class SslCommerzPaymentController extends Controller
                 ->product('Product')
                 ->customer($customer['f_name'] . ' ' . $customer['l_name'] ,$customer['mail']??'example@example.com')
                 ->setUrl([route('ssl-success', ['callback'=>$callback]), route('ssl-failure', ['callback'=>$callback]), route('ssl-cancel', ['callback'=>$callback]), route('ssl-ipn') ])
-                ->setCurrency(Helpers::currency_code());
+                ->setCurrency('USD');
 
             $payment_options = $sslc->make_payment();
             if (!SSLCommerz::query_transaction($transaction_reference)->status) {
@@ -104,6 +104,7 @@ class SslCommerzPaymentController extends Controller
         if ($callback != null) {
             return redirect($callback . '/success' . '?token=' . base64_encode($token_string));
         } else {
+            Toastr::success('Payment Successfull!','success');
             return \redirect()->route('payment-success', ['token' => base64_encode($token_string)]);
         }
     }
