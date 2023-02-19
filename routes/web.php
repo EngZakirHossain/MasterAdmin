@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\BkashPaymentController;
 use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\ModuleController;
@@ -97,20 +98,16 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     //SSLCOMMERZ END
     //stripe payment Route
 
-    Route::get('pay-stripe', 'StripePaymentController@payment_process_3d')->name('pay-stripe');
-    Route::get('pay-stripe/success', 'StripePaymentController@success')->name('pay-stripe.success');
-    Route::get('pay-stripe/fail', 'StripePaymentController@success')->name('pay-stripe.fail');
+    // Route::get('pay-stripe', 'StripePaymentController@payment_process_3d')->name('pay-stripe');
+    // Route::get('pay-stripe/success', 'StripePaymentController@success')->name('pay-stripe.success');
+    // Route::get('pay-stripe/fail', 'StripePaymentController@success')->name('pay-stripe.fail');
 
     //bkash
     Route::group(['prefix'=>'bkash'], function () {
         // Payment Routes for bKash
-        Route::post('get-token', 'BkashPaymentController@getToken')->name('bkash-get-token');
-        Route::post('create-payment', 'BkashPaymentController@createPayment')->name('bkash-create-payment');
-        Route::post('execute-payment', 'BkashPaymentController@executePayment')->name('bkash-execute-payment');
-        Route::get('query-payment', 'BkashPaymentController@queryPayment')->name('bkash-query-payment');
-        Route::post('success', 'BkashPaymentController@bkashSuccess')->name('bkash-success');
-
-        // Refund Routes for bKash
-        Route::get('refund', 'BkashRefundController@index')->name('bkash-refund');
-        Route::post('refund', 'BkashRefundController@refund')->name('bkash-refund');
+        Route::post('get-token', [BkashPaymentController::class,'getToken'])->name('bkash-get-token');
+        Route::post('create-payment', [BkashPaymentController::class,'createPayment'])->name('bkash-create-payment');
+        Route::post('execute-payment', [BkashPaymentController::class,'executePayment'])->name('bkash-execute-payment');
+        Route::get('query-payment', [BkashPaymentController::class,'queryPayment'])->name('bkash-query-payment');
+        Route::post('success', [BkashPaymentController::class,'bkashSuccess'])->name('bkash-success');
     });
