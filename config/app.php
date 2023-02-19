@@ -188,6 +188,7 @@ return [
 
          */
         browner12\helpers\HelperServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
         /*
          * Application Service Providers...

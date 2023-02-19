@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('page_title', 'Social Login Setting')
+@section('page_title', 'SMS Setting')
 @push('admin_style')
 @endpush
 @section('admin_content')
@@ -97,8 +97,8 @@
                                         method="post">
                                         @csrf
                                         <div class="form-check form-switch mb-2">
-                                            <input class="form-check-input mb-2" type="checkbox" id="select-all" name="status"
-                                                {{ isset($config) && $config['status'] ? 'checked' : '' }}>
+                                            <input class="form-check-input mb-2" type="checkbox" id="select-all"
+                                                name="status" {{ isset($config) && $config['status'] ? 'checked' : '' }}>
                                             <label class="form-check-label" for="select-all">Active </label>
                                         </div>
                                         <div class="form-group">
@@ -144,12 +144,12 @@
                                         class="d-flex flex-wrap justify-content-between align-items-center text-uppercase mb-1">
                                         <h5 class="text-center">2factor_sms</h5>
                                         <div class="pl-2">
-                                            <img src="{{ asset('admin/assets/img/icons/sms/2factor.png') }}" alt="public"
-                                                style="height: 50px">
+                                            <img src="{{ asset('admin/assets/img/icons/sms/2factor.png') }}"
+                                                alt="public" style="height: 50px">
                                         </div>
                                     </div>
-                                    <span
-                                        class="badge badge-soft-info word-break">EX of SMS provider's template : your OTP is XXXX here, please check.</span><br>
+                                    <span class="badge badge-soft-info word-break">EX of SMS provider's template : your OTP
+                                        is XXXX here, please check.</span><br>
                                     <span class="badge badge-soft-info mb-3 word-break">NB : XXXX will be replace with
                                         otp</span>
                                     @php($config = \App\Helper\Helpers::get_business_settings('2factor_sms'))

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\ModuleController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -70,6 +71,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
         //sms module controller
         Route::get('smsconfig',[SMSModuleController::class,'sms_index'])->name('sms_index');
         Route::post('sms-module-update/{module}',[SMSModuleController::class,'sms_update'])->name('sms_module_update');
+
+        //payment module controller
+        Route::get('payment-method', [SettingController::class,'payment_index'])->name('payment_method');
+        Route::post('payment-method-update/{payment_method}',[SettingController::class,'payment_update'])->name('payment_method_update');
     });
 
 });
+
+  /*paypal*/
+    /*Route::get('/paypal', function (){return view('paypal-test');})->name('paypal');*/
+    Route::post('pay-paypal', [PaypalPaymentController::class,'payWithpaypal'])->name('pay-paypal');
+    Route::get('paypal-status', [PaypalPaymentController::class,'getPaymentStatus'])->name('paypal-status');
+    Route::get('paypal-fail', [PaypalPaymentController::class,'paymentFail'])->name('payment-fail');
+    Route::get('payment-success', [PaypalPaymentController::class,'paymentSuccess'])->name('payment-success');
+    /*paypal*/
